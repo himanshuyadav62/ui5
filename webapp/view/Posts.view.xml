@@ -1,0 +1,65 @@
+<mvc:View
+    controllerName="projectui5.controller.Posts"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page title="Posts">
+        <content>
+            <Table
+                id="postsTable"
+                inset="true"
+                items="{posts>/}">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Posts Table" />
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="10%">
+                        <Text text="ID" />
+                    </Column>
+                    <Column width="30%">
+                        <Text text="Title" />
+                    </Column>
+                    <Column width="40%">
+                        <Text text="Body" />
+                    </Column>
+                    <Column width="20%">
+                        <Text text="Actions" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{posts>id}" />
+                            <Text text="{posts>title}" />
+                            <Text text="{posts>body}" />
+                            <Button 
+                                text="Comments" 
+                                press="onLoadComments"
+                                type="Transparent"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            
+            <Panel 
+                id="commentsPanel" 
+                visible="false" 
+                class="sapUiSmallMarginBegin">
+                <List
+                    id="commentsList"
+                    items="{comments>/}"
+                    headerText="Comments"
+                    showNoData="true">
+                    <items>
+                        <StandardListItem
+                            title="{comments>name}"
+                            description="{comments>body}"
+                            info="{comments>email}"
+                            infoState="Information"/>
+                    </items>
+                </List>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

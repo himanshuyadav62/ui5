@@ -1,0 +1,46 @@
+<mvc:View 
+    controllerName="projectui5.controller.View"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <!-- Button to display data in a table -->
+            <Button 
+                text="{i18n>showTable}" 
+                press=".onShowTable" />
+
+            <!-- Table to display data -->
+            <Table 
+                id="dataTable" 
+                visible="false" 
+                inset="true">
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="{i18n>tableTitle}" />
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="{i18n>key}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>value}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{key}" />
+                            <Text text="{value}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <!-- Button to navigate to posts -->
+            <Button 
+                text="Go to Posts" 
+                press=".onNavigateToPosts" />
+        </content>
+    </Page>
+</mvc:View>
