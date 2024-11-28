@@ -1,65 +1,82 @@
 <mvc:View
     controllerName="projectui5.controller.Posts"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page title="Posts">
-        <content>
-            <Table
-                id="postsTable"
-                inset="true"
-                items="{posts>/}">
-                <headerToolbar>
-                    <Toolbar>
-                        <Title text="Posts Table" />
-                    </Toolbar>
-                </headerToolbar>
-                <columns>
-                    <Column width="10%">
-                        <Text text="ID" />
-                    </Column>
-                    <Column width="30%">
-                        <Text text="Title" />
-                    </Column>
-                    <Column width="40%">
-                        <Text text="Body" />
-                    </Column>
-                    <Column width="20%">
-                        <Text text="Actions" />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem>
-                        <cells>
-                            <Text text="{posts>id}" />
-                            <Text text="{posts>title}" />
-                            <Text text="{posts>body}" />
-                            <Button 
-                                text="Comments" 
-                                press="onLoadComments"
-                                type="Transparent"/>
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-            
-            <Panel 
-                id="commentsPanel" 
-                visible="false" 
-                class="sapUiSmallMarginBegin">
-                <List
-                    id="commentsList"
-                    items="{comments>/}"
-                    headerText="Comments"
-                    showNoData="true">
-                    <items>
-                        <StandardListItem
-                            title="{comments>name}"
-                            description="{comments>body}"
-                            info="{comments>email}"
-                            infoState="Information"/>
-                    </items>
-                </List>
-            </Panel>
-        </content>
-    </Page>
+    xmlns="sap.ui.table"
+    xmlns:m="sap.m">
+    <Table
+        id="postsTable"
+        rows="{posts>/}"
+        rowMode="{ path: 'fixedRowMode' }"
+        selectionMode="None"
+        enableColumnReordering="false">
+        <columns>
+            <Column>
+                <label>
+                    <m:Label text="ID" />
+                </label>
+                <template>
+                    <m:Text text="{posts>id}" />
+                </template>
+            </Column>
+            <Column>
+                <label>
+                    <m:Label text="Title" />
+                </label>
+                <template>
+                    <m:Text text="{posts>title}" />
+                </template>
+            </Column>
+            <Column>
+                <label>
+                    <m:Label text="Body" />
+                </label>
+                <template>
+                    <m:Text text="{posts>body}" />
+                </template>
+            </Column>
+            <Column>
+                <label>
+                    <m:Label text="Actions" />
+                </label>
+                <template>
+                    <m:Button text="Show Comments" press="onToggleComments" />
+                </template>
+            </Column>
+        </columns>
+    </Table>
+
+    <!-- Comments Table -->
+    <Table
+        id="commentsTable"
+        rows="{comments>/}"
+        rowMode="{ path: 'fixedRowMode' }"
+        visible="false"
+        selectionMode="None">
+        <columns>
+            <Column>
+                <label>
+                    <m:Label text="Name" />
+                </label>
+                <template>
+                    <m:Text text="{comments>name}" />
+                </template>
+            </Column>
+            <Column>
+                <label>
+                    <m:Label text="Comment" />
+                </label>
+                <template>
+                    <m:Text text="{comments>body}" />
+                </template>
+            </Column>
+            <Column>
+                <label>
+                    <m:Label text="Email" />
+                </label>
+                <template>
+                    <m:Text text="{comments>email}" />
+                </template>
+            </Column>
+        </columns>
+    </Table>
 </mvc:View>

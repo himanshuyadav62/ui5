@@ -1,19 +1,73 @@
-<mvc:View 
+<mvc:View
     controllerName="projectui5.controller.View"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
         <content>
+            <!-- Two-way bound input fields -->
+            <VBox class="sapUiSmallMargin">
+                <Label text="Name" />
+                <Input
+                    value="{data>/user/name}"
+                    description="User's name"
+                    valueLiveChange=".onLiveChange"
+                />
+
+                <Label text="Age" />
+                <Input
+                    value="{data>/user/age}"
+                    type="Number"
+                    description="User's age"
+                    valueLiveChange=".onLiveChange"
+                />
+
+                <Label text="Theme" />
+                <Select
+                    selectedKey="{data>/settings/theme}"
+                    change=".onLiveChange"
+                >
+                    <items>
+                        <core:Item
+                            key="Light"
+                            text="Light Theme"
+                        />
+                        <core:Item
+                            key="Dark"
+                            text="Dark Theme"
+                        />
+                        <core:Item
+                            key="Contrast"
+                            text="High Contrast"
+                        />
+                    </items>
+                </Select>
+
+                <Switch
+                    state="{data>/settings/notifications}"
+                    change=".onLiveChange"
+                    customTextOn="On"
+                    customTextOff="Off"
+                    class="sapUiSmallMarginTop"
+                />
+            </VBox>
+
             <!-- Button to display data in a table -->
-            <Button 
-                text="{i18n>showTable}" 
-                press=".onShowTable" />
+            <Button
+                text="{i18n>showTable}"
+                press=".onShowTable"
+            />
 
             <!-- Table to display data -->
-            <Table 
-                id="dataTable" 
-                visible="false" 
-                inset="true">
+            <Table
+                id="dataTable"
+                visible="false"
+                inset="true"
+            >
                 <headerToolbar>
                     <Toolbar>
                         <Title text="{i18n>tableTitle}" />
@@ -37,10 +91,26 @@
                 </items>
             </Table>
 
-            <!-- Button to navigate to posts -->
-            <Button 
-                text="Go to Posts" 
-                press=".onNavigateToPosts" />
+            <!-- Navigation Buttons -->
+            <Button
+                text="Go to Posts"
+                press=".onNavigateToPosts"
+            />
+            <Button
+                text="Go to Users"
+                press=".onNavigateToUsers"
+            />
+            
+           <VBox>
+                <Text text = ""></Text>
+           </VBox>
+
+            <Text text="Global Model " />
+            <VBox>
+                <Text text="{globalModel>/user/name}" />
+                <Text text="{globalModel>/user/age}" />
+                <Text text="{globalModel>/user/location}" />
+            </VBox>
         </content>
     </Page>
 </mvc:View>

@@ -1,0 +1,21 @@
+<mvc:View
+    controllerName="projectui5.controller.Users"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="usersPage" title="Users">
+        <content>
+            <List
+                id="usersList"
+                items="{users>/users}"
+                headerText="User List">
+                <items>
+                    <StandardListItem
+                        title="{users>name}"
+                        description="{users>email}"
+                        type="Navigation"
+                        press="onUserPress"/>
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

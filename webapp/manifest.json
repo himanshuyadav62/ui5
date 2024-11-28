@@ -86,6 +86,13 @@
                     "target": [
                         "TargetPosts"
                     ]
+                },
+                {
+                    "name" : "RouteUsers",
+                    "pattern" : "users",
+                    "target" : [
+                        "TargetUsers"
+                    ]
                 }
             ],
             "targets": {
@@ -96,6 +103,10 @@
                 "TargetPosts": {
                     "id": "Posts",
                     "name": "Posts"
+                },
+                "TargetUsers" :{
+                    "id" : "Users",
+                    "name" : "Users"
                 }
             }
         },
