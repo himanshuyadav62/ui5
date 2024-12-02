@@ -15,7 +15,7 @@
                 <Input
                     value="{data>/user/name}"
                     description="User's name"
-                    valueLiveChange=".onLiveChange"
+                    liveChange=".onLiveChange"
                 />
 
                 <Label text="Age" />
@@ -23,7 +23,7 @@
                     value="{data>/user/age}"
                     type="Number"
                     description="User's age"
-                    valueLiveChange=".onLiveChange"
+                    liveChange=".onLiveChange"
                 />
 
                 <Label text="Theme" />
