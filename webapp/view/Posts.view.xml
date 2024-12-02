@@ -2,10 +2,13 @@
     controllerName="projectui5.controller.Posts"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.ui.table"
-    xmlns:m="sap.m">
-    
-    <m:Page title="Posts" class="sapUiContentPadding sapUiSmallMarginBegin sapMTitle">
-    
+    xmlns:m="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <m:Page
+        title="Posts"
+        class="sapUiContentPadding sapUiSmallMarginBegin sapMTitle"
+    >
         <m:content>
             <!-- Posts Table -->
             <Table
@@ -14,8 +17,8 @@
                 rowMode="Fixed"
                 selectionMode="None"
                 enableColumnReordering="false"
-                class="sapUiResponsiveMargin">
-                
+                class="sapUiResponsiveMargin"
+            >
                 <columns>
                     <Column width="100px">
                         <label>
@@ -46,10 +49,85 @@
                             <m:Label text="Actions" />
                         </label>
                         <template>
-                            <m:Button 
-                                text="Show Comments" 
-                                press="onToggleComments" 
-                                class="sapMBtn sapMBtnBase"/>
+                            <m:Button
+                                text="Show Comments"
+                                press="onToggleComments"
+                                class="sapMBtn sapMBtnBase"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column>
+                        <label>
+                            <m:Label text="Single Select" />
+                        </label>
+                        <template>
+                            <m:ComboBox
+                                selectedKey="{posts>selectedOption}"
+                                change="onSingleSelectChange"
+                            >
+                                <m:items>
+                                    <core:Item
+                                        key="option1"
+                                        text="Option 1"
+                                    />
+                                    <core:Item
+                                        key="option2"
+                                        text="Option 2"
+                                    />
+                                    <core:Item
+                                        key="option3"
+                                        text="Option 3"
+                                    />
+                                </m:items>
+                            </m:ComboBox>
+                        </template>
+                    </Column>
+
+                    <Column>
+                        <label>
+                            <m:Label text="Checkboxes" />
+                        </label>
+                        <template>
+                            <m:HBox>
+                                <m:CheckBox
+                                    text="Check 1"
+                                    selected="{posts>checkbox1}"
+                                    select="onCheckbox1Change"
+                                />
+                                <m:CheckBox
+                                    text="Check 2"
+                                    selected="{posts>checkbox2}"
+                                    select="onCheckbox2Change"
+                                />
+                            </m:HBox>
+                        </template>
+                    </Column>
+
+                    <Column>
+                        <label>
+                            <m:Label text="Multiple Select" />
+                        </label>
+                        <template>
+                            <m:MultiComboBox
+                                selectedKeys="{posts>selectedMultiOptions}"
+                                change="onMultiSelectChange"
+                            >
+                                <m:items>
+                                    <core:Item
+                                        key="1"
+                                        text="Option 1"
+                                    />
+                                    <core:Item
+                                        key="2"
+                                        text="Option 2"
+                                    />
+                                    <core:Item
+                                        key="3"
+                                        text="Option 3"
+                                    />
+                                </m:items>
+                            </m:MultiComboBox>
                         </template>
                     </Column>
                 </columns>
@@ -62,8 +140,8 @@
                 rowMode="Fixed"
                 visible="false"
                 selectionMode="None"
-                class="sapUiResponsiveMargin">
-                
+                class="sapUiResponsiveMargin"
+            >
                 <columns>
                     <Column>
                         <label>
@@ -91,8 +169,6 @@
                     </Column>
                 </columns>
             </Table>
-
         </m:content>
     </m:Page>
-
 </mvc:View>

@@ -14,6 +14,15 @@ sap.ui.define([
             const oPostsModel = new JSONModel();
             oPostsModel.attachRequestCompleted(() => {
                 MessageToast.show("Posts loaded successfully!");
+                const posts = oPostsModel.getData();
+                posts.forEach(post => {
+                    post.selectedOption = post.selectedOption || "option1"; 
+                    post.checkbox1 = post.checkbox1 || false;  
+                    post.checkbox2 = post.checkbox2 || false;  
+                    post.selectedMultiOptions = post.selectedMultiOptions || []; 
+                });
+                oPostsModel.setData(posts);
+                console.log(posts); 
             });
             oPostsModel.loadData("https://jsonplaceholder.typicode.com/posts");
             this.getView().setModel(oPostsModel, "posts");
@@ -27,20 +36,16 @@ sap.ui.define([
             const oRowContext = oEvent.getSource().getBindingContext("posts");
             const postId = oRowContext.getProperty("id");
 
-            
             const oCommentsTable = this.byId("commentsTable");
 
-            
             if (oCommentsTable.getVisible()) {
                 oCommentsTable.setVisible(false);
                 return;
             }
 
-            
             const sCommentsUrl = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
             const oCommentsModel = this.getView().getModel("comments");
 
-            // Load comments for the post
             fetch(sCommentsUrl)
                 .then((response) => {
                     if (!response.ok) throw new Error("Network error");
@@ -49,13 +54,37 @@ sap.ui.define([
                 .then((comments) => {
                     oCommentsModel.setData(comments);
 
-                    
                     oCommentsTable.setVisible(true);
                     MessageToast.show(`Loaded ${comments.length} comments for Post ID: ${postId}`);
                 })
                 .catch(() => {
                     MessageToast.show("Failed to load comments");
                 });
+        },
+
+        onSingleSelectChange(oEvent) {
+            const selectedKey = oEvent.getSource().getSelectedKey();
+            const rowContext = oEvent.getSource().getBindingContext("posts");
+            rowContext.getModel().setProperty(rowContext.getPath() + "/selectedOption", selectedKey);
+        },
+
+        onCheckbox1Change(oEvent) {
+            const checked = oEvent.getSource().getSelected();
+            const rowContext = oEvent.getSource().getBindingContext("posts");
+            rowContext.getModel().setProperty(rowContext.getPath() + "/checkbox1", checked);
+        },
+
+        onCheckbox2Change(oEvent) {
+            const checked = oEvent.getSource().getSelected(); 
+            const rowContext = oEvent.getSource().getBindingContext("posts");
+            rowContext.getModel().setProperty(rowContext.getPath() + "/checkbox2", checked);
+        },
+
+        onMultiSelectChange(oEvent) {
+            const selectedKeys = oEvent.getSource().getSelectedKeys(); 
+            const rowContext = oEvent.getSource().getBindingContext("posts");
+            rowContext.getModel().setProperty(rowContext.getPath() + "/selectedMultiOptions", selectedKeys);
+            console.log(this.getView().getModel("posts").oData[0]); 
         }
     });
 });
