@@ -51,6 +51,11 @@
                 "settings": {
                     "bundleName": "projectui5.i18n.i18n"
                 }
+            },
+            "globalConfig": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true,
+                "uri": "model/globalConfig.json"
             }
         },
         "resources": {

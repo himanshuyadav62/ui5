@@ -6,8 +6,13 @@
 >
     <Page
         id="page"
-        title="{i18n>title}"
     >
+        <headerContent>
+            <core:Fragment
+                fragmentName="projectui5.fragments.Header"
+                type="XML"
+            />
+        </headerContent>
         <content>
             <!-- Two-way bound input fields -->
             <VBox class="sapUiSmallMargin">
@@ -107,9 +112,10 @@
 
             <Text text="Global Model " />
             <VBox>
-                <Text text="{globalModel>/user/name}" />
-                <Text text="{globalModel>/user/age}" />
-                <Text text="{globalModel>/user/location}" />
+                <Text text="Name : {globalModel>/user/name}" />
+                <Text text="Age : {globalModel>/user/age}" />
+                <Text text="Location : {globalModel>/user/location}" />
+                <Text text="apibaseUrl : {globalConfig>/apiBaseUrl}"/>
             </VBox>
         </content>
     </Page>

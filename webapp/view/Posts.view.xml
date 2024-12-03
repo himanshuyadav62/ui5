@@ -14,10 +14,9 @@
             <Table
                 id="postsTable"
                 rows="{posts>/}"
-                rowMode="Fixed"
-                selectionMode="None"
                 enableColumnReordering="false"
                 class="sapUiResponsiveMargin"
+                rowSelectionChange="onTableRowSelectionChange"
             >
                 <columns>
                     <Column width="100px">
