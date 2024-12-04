@@ -10,6 +10,10 @@
         class="sapUiContentPadding sapUiSmallMarginBegin sapMTitle"
     >
         <m:content>
+            <core:Fragment
+                fragmentName="projectui5.fragments.NavigationTile"
+                type="XML"
+            />
             <!-- Posts Table -->
             <Table
                 id="postsTable"

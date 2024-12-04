@@ -91,6 +91,11 @@ sap.ui.define([
             
             // Make the table visible
             oTable.setVisible(true);
+        },
+        onTilePress(oEvent){
+            const sKey = oEvent.getSource().data("key");
+            MessageToast.show(`Tile pressed: ${sKey}`);
+            this.getOwnerComponent().getRouter().navTo(sKey);
         }
     });
 });

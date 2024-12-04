@@ -1,19 +1,30 @@
 <mvc:View
     controllerName="projectui5.controller.Users"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="usersPage" title="Users">
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+>
+    <Page
+        id="usersPage"
+        title="Users"
+    >
         <content>
+            <core:Fragment
+                fragmentName="projectui5.fragments.NavigationTile"
+                type="XML"
+            />
             <List
                 id="usersList"
                 items="{users>/users}"
-                headerText="User List">
+                headerText="User List"
+            >
                 <items>
                     <StandardListItem
                         title="{users>name}"
                         description="{users>email}"
                         type="Navigation"
-                        press="onUserPress"/>
+                        press="onUserPress"
+                    />
                 </items>
             </List>
         </content>

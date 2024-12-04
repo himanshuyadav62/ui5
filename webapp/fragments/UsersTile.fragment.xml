@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Button
+    text="Users"
+    icon="sap-icon://person-placeholder"
+    press=".onTilePress"
+    class="customTileButton" 
+    width="250px"  
+  >
+    <customData>
+      <core:CustomData key="key" value="RouteUsers" />
+    </customData>
+  </Button>
+</core:FragmentDefinition>

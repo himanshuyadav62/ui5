@@ -4,9 +4,7 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
 >
-    <Page
-        id="page"
-    >
+    <Page id="page">
         <headerContent>
             <core:Fragment
                 fragmentName="projectui5.fragments.Header"
@@ -14,6 +12,12 @@
             />
         </headerContent>
         <content>
+            <VBox>
+                <core:Fragment
+                    fragmentName="projectui5.fragments.NavigationTile"
+                    type="XML"
+                />
+            </VBox>
             <!-- Two-way bound input fields -->
             <VBox class="sapUiSmallMargin">
                 <Label text="Name" />
@@ -105,17 +109,17 @@
                 text="Go to Users"
                 press=".onNavigateToUsers"
             />
-            
-           <VBox>
-                <Text text = ""></Text>
-           </VBox>
+
+            <VBox>
+                <Text text="" />
+            </VBox>
 
             <Text text="Global Model " />
             <VBox>
                 <Text text="Name : {globalModel>/user/name}" />
                 <Text text="Age : {globalModel>/user/age}" />
                 <Text text="Location : {globalModel>/user/location}" />
-                <Text text="apibaseUrl : {globalConfig>/apiBaseUrl}"/>
+                <Text text="apibaseUrl : {globalConfig>/apiBaseUrl}" />
             </VBox>
         </content>
     </Page>

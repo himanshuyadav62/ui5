@@ -1,0 +1,28 @@
+/* Custom styles for the buttons */
+.customTileButton {
+  background-color: #f8f8f8; /* Light cream background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding inside the button */
+  width: 250px; /* Increased width */
+  height: 200px; /* Increased height */
+  text-align: center; /* Center the text and icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for a card effect */
+}
+
+.customTileButton .sapMBtnContent {
+  display: block;
+  text-align: center;
+}
+
+.customTileButton .sapMBtnIcon {
+  margin-bottom: 10px;
+  font-size: 48px; /* Adjust the icon size */
+}
+
+.customTileButton .sapMBtnText {
+  font-size: 16px;
+  font-weight: bold;
+}

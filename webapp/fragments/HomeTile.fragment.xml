@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Button
+    text="Home"
+    icon="sap-icon://home"
+    press=".onTilePress"
+    class="customTileButton" 
+    width="250px"   
+  >
+    <customData>
+      <core:CustomData key="key" value="default" />
+    </customData>
+  </Button>
+</core:FragmentDefinition>

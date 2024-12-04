@@ -116,5 +116,10 @@ sap.ui.define([
                 MessageToast.show("No posts selected");
             }
         },
+        onTilePress(oEvent){
+            const sKey = oEvent.getSource().data("key");
+            MessageToast.show(`Tile pressed: ${sKey}`);
+            this.getOwnerComponent().getRouter().navTo(sKey);
+        },
     });
 });

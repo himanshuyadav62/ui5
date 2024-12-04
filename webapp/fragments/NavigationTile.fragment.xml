@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <HBox id="idTileContainerHBox">
+    <!-- Buttons will be added dynamically or declaratively -->
+    <core:Fragment
+      fragmentName="projectui5.fragments.HomeTile"
+      type="XML"
+    />
+    <core:Fragment
+      fragmentName="projectui5.fragments.PostsTile"
+      type="XML"
+    />
+    <core:Fragment
+      fragmentName="projectui5.fragments.UsersTile"
+      type="XML"
+    />
+  </HBox>
+</core:FragmentDefinition>
