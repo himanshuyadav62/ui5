@@ -3,7 +3,6 @@
     text="Users"
     icon="sap-icon://person-placeholder"
     press=".onTilePress"
-    class="customTileButton" 
     width="250px"  
   >
     <customData>

@@ -2,10 +2,11 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/resource/ResourceModel",
-    "sap/m/MessageToast"
-], (Controller, JSONModel, ResourceModel, MessageToast) => {
+    "sap/m/MessageToast",
+    "projectui5/controller/BaseController"
+], (Controller, JSONModel, ResourceModel, MessageToast,BaseController) => {
     "use strict";
-    return Controller.extend("projectui5.controller.View", {
+    return BaseController.extend("projectui5.controller.View", {
         onInit() {
             // Create and set a JSON Model
             const oData = {
@@ -91,11 +92,6 @@ sap.ui.define([
             
             // Make the table visible
             oTable.setVisible(true);
-        },
-        onTilePress(oEvent){
-            const sKey = oEvent.getSource().data("key");
-            MessageToast.show(`Tile pressed: ${sKey}`);
-            this.getOwnerComponent().getRouter().navTo(sKey);
         }
     });
 });

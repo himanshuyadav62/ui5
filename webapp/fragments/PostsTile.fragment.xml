@@ -3,7 +3,6 @@
     text="Posts"
     icon="sap-icon://news"
     press=".onTilePress"
-    class="customTileButton"  
     width="250px"  
   >
     <customData>

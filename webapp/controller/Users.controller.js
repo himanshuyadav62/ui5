@@ -1,10 +1,11 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageToast"
-], (Controller, JSONModel, MessageToast) => {
+    "sap/m/MessageToast",
+    "projectui5/controller/BaseController"
+], (Controller, JSONModel, MessageToast, BaseController) => {
     "use strict";
-    return Controller.extend("projectui5.controller.Users", {
+    return BaseController.extend("projectui5.controller.Users", {
         onInit() {
             console.log("init users controller");
             // Create an empty JSON model
@@ -37,11 +38,5 @@ sap.ui.define([
             // Show a message with user details
             MessageToast.show(`Selected User: ${oUser.name} (${oUser.email})`);
         },
-
-        onTilePress(oEvent){
-            const sKey = oEvent.getSource().data("key");
-            MessageToast.show(`Tile pressed: ${sKey}`);
-            this.getOwnerComponent().getRouter().navTo(sKey);
-        }
     });
 });

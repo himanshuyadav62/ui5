@@ -2,11 +2,12 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/table/rowmodes/Fixed",
-    "sap/m/MessageToast"
-], (Controller, JSONModel, FixedRowMode, MessageToast) => {
+    "sap/m/MessageToast",
+    "projectui5/controller/BaseController"
+], (Controller, JSONModel, FixedRowMode, MessageToast,BaseController) => {
     "use strict";
 
-    return Controller.extend("projectui5.controller.Posts", {
+    return BaseController.extend("projectui5.controller.Posts", {
 
         apiBaseUrl :null,
 
@@ -115,11 +116,6 @@ sap.ui.define([
             } else {
                 MessageToast.show("No posts selected");
             }
-        },
-        onTilePress(oEvent){
-            const sKey = oEvent.getSource().data("key");
-            MessageToast.show(`Tile pressed: ${sKey}`);
-            this.getOwnerComponent().getRouter().navTo(sKey);
         },
     });
 });

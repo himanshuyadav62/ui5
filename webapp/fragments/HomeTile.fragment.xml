@@ -3,7 +3,6 @@
     text="Home"
     icon="sap-icon://home"
     press=".onTilePress"
-    class="customTileButton" 
     width="250px"   
   >
     <customData>
