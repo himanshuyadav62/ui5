@@ -12,10 +12,62 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("projectui5.controller.Crud", {
-
         onInit: function() {            
             const oPostsModel = new JSONModel();
 
+            // Create edit dialog once during initialization
+            this._oEditDialog = new Dialog({
+                title: "Edit Post",
+                contentWidth: "500px",
+                content: [
+                    new Label({ text: "Title" }),
+                    new Input({
+                        placeholder: "Enter post title"
+                    }),
+                    new Label({ text: "Content" }),
+                    new Input({ 
+                        placeholder: "Enter post content"
+                    })
+                ],
+                beginButton: new Button({
+                    text: "Save",
+                    press: this._onSaveEdit.bind(this)
+                }),
+                endButton: new Button({
+                    text: "Cancel",
+                    press: function(oEvent) {
+                        oEvent.getSource().getParent().close();
+                    }
+                })
+            });
+
+            // Create new post dialog
+            this._oCreateDialog = new Dialog({
+                title: "Create New Post",
+                contentWidth: "500px",
+                content: [
+                    new Label({ text: "Title" }),
+                    new Input({
+                        placeholder: "Enter post title"
+                    }),
+                    new Label({ text: "Content" }),
+                    new Input({ 
+                        placeholder: "Enter post content"
+                    })
+                ],
+                beginButton: new Button({
+                    text: "Create",
+                    press: this._onCreatePost.bind(this)
+                }),
+                endButton: new Button({
+                    text: "Cancel",
+                    press: function(oEvent) {
+                        oEvent.getSource().getParent().close();
+                    }
+                })
+            });
+
+            // Fetch posts
             $.ajax({
                 url: "http://localhost:5000/posts",
                 method: "GET",
@@ -24,7 +76,7 @@ sap.ui.define([
                     oPostsModel.setData({posts: data});
                 },
                 error: function() {
-                    console.log("Error");
+                    console.log("Error fetching posts");
                 }
             });
 
@@ -32,95 +84,143 @@ sap.ui.define([
         },
 
 		onShowCommentsButtonPress: function(oEvent) {
-			// Implement logic to show comments
+            const oButton = oEvent.getSource();
+            const oContext = oButton.getBindingContext("posts");
+            const oPost = oContext.getObject();
+            
+            MessageBox.show(`Comments for post ${oPost.id}`);
 		},
 
 		onDeleteButtonPress: function(oEvent) {
-            const oTable = this.byId("idPostsTable");
-            const aSelectedIndices = oTable.getSelectedIndices();
-            
-            if (aSelectedIndices.length === 0) {
-                MessageBox.error("Please select a post to delete.");
-                return;
-            }
+            const oButton = oEvent.getSource();
+            const oContext = oButton.getBindingContext("posts");
+            const oPost = oContext.getObject();
         
-            const oModel = this.getView().getModel("posts");
-            const oData = oModel.getProperty("/posts");
-            const iSelectedIndex = aSelectedIndices[0];  // Assuming single selection, take the first selected index
-            const sPostId = oData[iSelectedIndex].id;
-        
-            $.ajax({
-                url: `http://localhost:5000/posts/${sPostId}`,
-                method: "DELETE",
-                success: () => {
-                    // Remove post from model
-                    oData.splice(iSelectedIndex, 1);
-                    oModel.setProperty("/posts", oData);
-                    MessageBox.success("Post deleted successfully.");
-                },
-                error: () => {
-                    MessageBox.error("Error deleting post.");
+            MessageBox.confirm("Are you sure you want to delete this post?", {
+                actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+                onClose: (sAction) => {
+                    if (sAction === MessageBox.Action.OK) {
+                        $.ajax({
+                            url: `http://localhost:5000/posts/${oPost.id}`,
+                            method: "DELETE",
+                            success: () => {
+                                const oModel = this.getView().getModel("posts");
+                                const aPosts = oModel.getProperty("/posts");
+                                const iIndex = aPosts.findIndex(p => p.id === oPost.id);
+                                
+                                if (iIndex !== -1) {
+                                    aPosts.splice(iIndex, 1);
+                                    oModel.setProperty("/posts", aPosts);
+                                }
+                                
+                                MessageBox.success("Post deleted successfully.");
+                            },
+                            error: () => {
+                                MessageBox.error("Error deleting post.");
+                            }
+                        });
+                    }
                 }
             });
         },
         
         onEditButtonPress: function(oEvent) {
-            const oTable = this.byId("idPostsTable");
-            const aSelectedIndices = oTable.getSelectedIndices();
-            
-            if (aSelectedIndices.length === 0) {
-                MessageBox.error("Please select a post to edit.");
+            const oButton = oEvent.getSource();
+            const oContext = oButton.getBindingContext("posts");
+            const oSelectedPost = oContext.getObject();
+
+            // Get content inputs dynamically
+            const aContent = this._oEditDialog.getContent();
+            aContent[1].setValue(oSelectedPost.title);
+            aContent[3].setValue(oSelectedPost.content);
+
+            // Store current post for save operation
+            this._currentEditPost = oSelectedPost;
+
+            this._oEditDialog.open();
+        },
+
+        _onSaveEdit: function() {
+            const aContent = this._oEditDialog.getContent();
+            const sNewTitle = aContent[1].getValue();
+            const sNewContent = aContent[3].getValue();
+            const oSelectedPost = this._currentEditPost;
+
+            if (!sNewTitle || !sNewContent) {
+                MessageBox.error("Please enter both title and content.");
                 return;
             }
-        
-            const oModel = this.getView().getModel("posts");
-            const oData = oModel.getProperty("/posts");
-            const iSelectedIndex = aSelectedIndices[0];  // Assuming single selection, take the first selected index
-            const oSelectedPost = oData[iSelectedIndex];
-        
-            const oDialog = new Dialog({
-                title: "Edit Post",
-                content: [
-                    new Label({ text: "Title" }),
-                    new Input({ id: "editTitle", value: oSelectedPost.title }),
-                    new Label({ text: "Content" }),
-                    new Input({ id: "editContent", value: oSelectedPost.content })
-                ],
-                beginButton: new Button({
-                    text: "Save",
-                    press: () => {
-                        const sNewTitle = sap.ui.getCore().byId("editTitle").getValue();
-                        const sNewContent = sap.ui.getCore().byId("editContent").getValue();
-        
-                        $.ajax({
-                            url: `http://localhost:5000/posts/${oSelectedPost.id}`,
-                            method: "PUT",
-                            contentType: "application/json",
-                            data: JSON.stringify({
-                                title: sNewTitle,
-                                content: sNewContent
-                            }),
-                            success: () => {
-                                // Update the model
-                                oSelectedPost.title = sNewTitle;
-                                oSelectedPost.content = sNewContent;
-                                oModel.setProperty("/posts", oData);
-                                MessageBox.success("Post updated successfully.");
-                                oDialog.close();
-                            },
-                            error: () => {
-                                MessageBox.error("Error updating post.");
-                            }
-                        });
-                    }
+
+            $.ajax({
+                url: `http://localhost:5000/posts/${oSelectedPost.id}`,
+                method: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    title: sNewTitle,
+                    content: sNewContent
                 }),
-                endButton: new Button({
-                    text: "Cancel",
-                    press: () => oDialog.close()
-                })
+                success: () => {
+                    const oModel = this.getView().getModel("posts");
+                    const aPosts = oModel.getProperty("/posts");
+                    const iIndex = aPosts.findIndex(p => p.id === oSelectedPost.id);
+                    
+                    if (iIndex !== -1) {
+                        aPosts[iIndex].title = sNewTitle;
+                        aPosts[iIndex].content = sNewContent;
+                        oModel.setProperty("/posts", aPosts);
+                    }
+                    
+                    MessageBox.success("Post updated successfully.");
+                    this._oEditDialog.close();
+                },
+                error: () => {
+                    MessageBox.error("Error updating post.");
+                }
             });
-        
-            oDialog.open();
+        },
+
+		onCreateNewPostButtonPress: function() {
+            // Reset dialog inputs
+            const aContent = this._oCreateDialog.getContent();
+            aContent[1].setValue('');
+            aContent[3].setValue('');
+
+            this._oCreateDialog.open();
+        },
+
+        _onCreatePost: function() {
+            const aContent = this._oCreateDialog.getContent();
+            const sTitle = aContent[1].getValue();
+            const sContent = aContent[3].getValue();
+
+            if (!sTitle || !sContent) {
+                MessageBox.error("Please enter both title and content.");
+                return;
+            }
+
+            $.ajax({
+                url: "http://localhost:5000/posts",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    title: sTitle,
+                    content: sContent
+                }),
+                success: (newPost) => {
+                    const oModel = this.getView().getModel("posts");
+                    const aPosts = oModel.getProperty("/posts");
+                    
+                    // Add new post to the beginning of the array
+                    aPosts.unshift(newPost);
+                    oModel.setProperty("/posts", aPosts);
+                    
+                    MessageBox.success("Post created successfully.");
+                    this._oCreateDialog.close();
+                },
+                error: () => {
+                    MessageBox.error("Error creating post.");
+                }
+            });
         }
 	});
 });
