@@ -3,7 +3,7 @@
 QUnit.config.autostart = false;
 
 sap.ui.require([
-	"project_ui5/test/unit/AllTests"
+	"pscreen/test/unit/AllTests"
 ], function (Controller) {
 	"use strict";
 	QUnit.start();

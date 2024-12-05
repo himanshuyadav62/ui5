@@ -1,10 +1,10 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "projectui5/model/models"
+    "pscreen/model/models"
 ], (UIComponent, models) => {
     "use strict";
 
-    return UIComponent.extend("projectui5.Component", {
+    return UIComponent.extend("pscreen.Component", {
         metadata: {
             manifest: "json",
             interfaces: [
@@ -16,9 +16,8 @@ sap.ui.define([
             // call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
 
-
-            var oGlobalModel = models.createModel();
-            this.setModel(oGlobalModel, "globalModel");
+            // set the device model
+            this.setModel(models.createDeviceModel(), "device");
 
             // enable routing
             this.getRouter().initialize();

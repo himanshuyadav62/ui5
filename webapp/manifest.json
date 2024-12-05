@@ -1,7 +1,7 @@
 {
     "_version": "1.65.0",
     "sap.app": {
-        "id": "projectui5",
+        "id": "pscreen",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -13,7 +13,7 @@
         "sourceTemplate": {
             "id": "@sap/generator-fiori:basic",
             "version": "1.15.6",
-            "toolsId": "53712186-6989-40c9-98d5-e737610ee2e9"
+            "toolsId": "7c130665-8f67-4b12-8110-c2ee42cb30cf"
         }
     },
     "sap.ui": {
@@ -33,9 +33,9 @@
         }
     },
     "sap.ui5": {
-        "flexEnabled": false,
+        "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.130.2",
+            "minUI5Version": "1.131.0",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {}
@@ -49,13 +49,8 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "projectui5.i18n.i18n"
+                    "bundleName": "pscreen.i18n.i18n"
                 }
-            },
-            "globalConfig": {
-                "type": "sap.ui.model.json.JSONModel",
-                "preload": true,
-                "uri": "model/globalConfig.json"
             }
         },
         "resources": {
@@ -73,43 +68,14 @@
                 "transition": "slide",
                 "type": "View",
                 "viewType": "XML",
-                "path": "projectui5.view",
+                "path": "pscreen.view",
                 "async": true,
-                "viewPath": "projectui5.view"
+                "viewPath": "pscreen.view"
             },
             "routes": [
                 {
                     "name": "RouteView",
                     "pattern": ":?query:",
-                    "target": [
-                        "TargetView"
-                    ]
-                },
-                {
-                    "name": "RoutePosts",
-                    "pattern": "posts",
-                    "target": [
-                        "TargetPosts"
-                    ]
-                },
-                {
-                    "name" : "RouteUsers",
-                    "pattern" : "users",
-                    "target" : [
-                        "TargetUsers"
-                    ]
-                },
-                {
-                    "name": "RouteCrud",
-                    "pattern": "crud",
-                    "target": [
-                        "TargetCrud"
-                    ]
-                },
-                {
-                    "name": "default",
-                    "pattern": "",
-                    "greedy": true,
                     "target": [
                         "TargetView"
                     ]
@@ -119,23 +85,11 @@
                 "TargetView": {
                     "id": "View",
                     "name": "View"
-                },
-                "TargetPosts": {
-                    "id": "Posts",
-                    "name": "Posts"
-                },
-                "TargetUsers" :{
-                    "id" : "Users",
-                    "name" : "Users"
-                },
-                "TargetCrud": {
-                    "id": "Crud",
-                    "name": "Crud"
                 }
             }
         },
         "rootView": {
-            "viewName": "projectui5.view.App",
+            "viewName": "pscreen.view.App",
             "type": "XML",
             "id": "App"
         }

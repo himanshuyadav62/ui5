@@ -3,7 +3,7 @@ sap.ui.define([
 ], (Controller) => {
   "use strict";
 
-  return Controller.extend("projectui5.controller.View", {
+  return Controller.extend("pscreen.controller.View", {
       onInit() {
       }
   });
