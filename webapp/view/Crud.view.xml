@@ -1,0 +1,54 @@
+<mvc:View
+	controllerName="projectui5.controller.Crud"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:table="sap.ui.table"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0"
+>
+
+  <Page id="idCrudPage" title="Crud Operation on Posts">
+        <content>
+              <table:Table 
+        id="idPostsTable"
+        rows="{posts>/posts}"
+        selectionMode="Single"    
+    >
+        <table:columns>
+            <table:Column>
+                <Label text="ID"/>
+                <table:template>
+                    <Text text="{posts>id}"/>
+                </table:template>
+            </table:Column>
+            <table:Column>
+                <Label text="Title"/>
+                <table:template>
+                    <Text text="{posts>title}"/>
+                </table:template>
+            </table:Column>
+            <table:Column>
+                <Label text="Body"/>
+                <table:template>
+                    <Text text="{posts>content}"/>
+                </table:template>
+            </table:Column>
+            <table:Column>
+                <Label text="Actions"/>
+                <table:template>
+                    <HBox>
+                        <Button text="Show Comments" press="onShowCommentsButtonPress"/>
+                        <Button text="Delete" press="onDeleteButtonPress"/>
+                        <Button text="Edit" press="onEditButtonPress"/>
+                    </HBox>
+                </table:template>
+            </table:Column>
+        </table:columns>
+    
+    </table:Table>
+        </content>
+  </Page>
+
+
+</mvc:View>

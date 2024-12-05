@@ -16,7 +16,7 @@
             />
             <!-- Posts Table -->
             <Table
-                id="postsTable"
+                id="idPostsCrudTable"
                 rows="{posts>/}"
                 enableColumnReordering="false"
                 class="sapUiResponsiveMargin"

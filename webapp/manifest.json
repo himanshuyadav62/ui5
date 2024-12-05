@@ -100,6 +100,13 @@
                     ]
                 },
                 {
+                    "name": "RouteCrud",
+                    "pattern": "crud",
+                    "target": [
+                        "TargetCrud"
+                    ]
+                },
+                {
                     "name": "default",
                     "pattern": "",
                     "greedy": true,
@@ -120,6 +127,10 @@
                 "TargetUsers" :{
                     "id" : "Users",
                     "name" : "Users"
+                },
+                "TargetCrud": {
+                    "id": "Crud",
+                    "name": "Crud"
                 }
             }
         },
