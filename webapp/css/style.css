@@ -1,1 +1,51 @@
-/* Enter your custom styles here */
+/* style.css */
+.iconStyle {
+    width: 2rem;
+    height: 2rem;
+}
+
+.tileContainer {
+    justify-content: space-between;
+}
+
+.customTile {
+    width: 32%;
+    padding: 10px;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+}
+
+.customTile .tileText {
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+/* style.css */
+.tileNumber1 {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    margin-left: 3rem;
+}
+
+.tileNumber2 {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    margin-left: 3rem;
+    color: rgb(236, 10, 10); /* Replace 'green' with your desired color */
+}
+
+.tileNumber3 {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    margin-left: 3rem;
+    color: rgb(234, 241, 9); /* Replace 'blue' with your desired color */
+}
+
+
+.sapUiSmallMarginBeginEnd {
+    margin-left: 2%;
+    margin-right: 2%;
+}
