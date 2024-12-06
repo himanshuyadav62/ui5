@@ -1,209 +1,240 @@
 <mvc:View
     controllerName="pscreen.controller.Screen"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
+    xmlns:m="sap.m"
+    xmlns:tnt="sap.tnt"
     xmlns:core="sap.ui.core"
     displayBlock="true"
 >
-
-
-
-    <Page>
-        <customHeader>
-            <Bar>
-                <contentLeft>
-                    <Button
-                        icon="sap-icon://upload"
-                        text="Submit"
-                        class="sapUiTinyMarginBegin submitButton"
-                    />
-                </contentLeft>
-                <contentRight>
-                    <Button
-                        icon="sap-icon://download"
-                        class="downloadButton"
-                    />
-                    <Button
-                        text="Upload Excel"
-                        class="uploadExcelButton"
-                    />
-                </contentRight>
-            </Bar>
-        </customHeader>
-
-        <content>
-            <VBox class="sapUiTinyMargin">
-                <VBox class="sapUiTinyMargin">
-                    <Title
-                        text="Compliance Overview"
-                        class="sapUiTinyMarginBottom sapUiSmallMarginLeft tileHeading"
-                    />
-                    <HBox class="tileContainer sapUiSmallMarginBeginEnd">
-                        <!-- First Tile -->
-                        <VBox class="customTile">
-                            <Text
-                                text="1114156"
-                                class="tileNumber1"
+    <m:App>
+        <!-- Split container for side navigation -->
+        <tnt:ToolPage sideExpanded="false"> <!-- Explicitly set sideExpanded here -->
+            <!-- Side Navigation -->
+            <tnt:header>
+                <tnt:ToolHeader>
+                    <m:Bar>
+                        <m:contentLeft>
+                            <m:Button
+                                icon="sap-icon://menu2"
+                                type="Transparent"
+                                press=".onToggleSideNav"
                             />
-                            <HBox>
-                                <core:Icon
-                                    src="sap-icon://document-text"
-                                    class="iconStyle"
-                                />
-                                <Text
-                                    text="Total Part Numbers"
-                                    class="tileText"
-                                />
-                            </HBox>
-                        </VBox>
-
-                        <!-- Second Tile -->
-                        <VBox class="customTile">
-                            <Text
-                                text="150888"
-                                class="tileNumber2"
+                            <m:Button
+                                icon="sap-icon://upload"
+                                text="Submit"
+                                class="sapUiTinyMarginBegin submitButton"
                             />
-                            <HBox>
-                                <core:Icon
-                                    src="sap-icon://pending"
-                                    class="iconStyle"
-                                />
-                                <Text
-                                    text="Without Country of Origin"
-                                    class="tileText"
-                                />
-                            </HBox>
-                        </VBox>
-
-                        <!-- Third Tile -->
-                        <VBox class="customTile">
-                            <Text
-                                text="963268"
-                                class="tileNumber3"
+                        </m:contentLeft>
+                        <m:contentRight>
+                            <m:Button
+                                icon="sap-icon://download"
+                                class="downloadButton"
                             />
-                            <HBox>
-                                <core:Icon
-                                    src="sap-icon://complete"
-                                    class="iconStyle"
-                                />
-                                <Text
-                                    text="With Country of Origin"
-                                    class="tileText"
-                                />
-                            </HBox>
-                        </VBox>
-                    </HBox>
-                </VBox>
+                            <m:Button
+                                text="Upload Excel"
+                                class="uploadExcelButton"
+                            />
+                        </m:contentRight>
+                    </m:Bar>
+                </tnt:ToolHeader>
+            </tnt:header>
 
-                <HBox
-                    justifyContent="End"
-                    class="sapUiSmallMarginTop"
+            <!-- Side Navigation -->
+            <tnt:sideContent>
+                <tnt:SideNavigation
+                    itemSelect=".onSideNavigationItemSelect"
+                    expanded="false"
                 >
-                    <Text
-                        text="Showing (88/88)"
-                        class="sapUiTinyMarginEnd"
-                    />
-                    <Button
-                        icon="sap-icon://refresh"
-                        tooltip="Reload"
-                    />
-                </HBox>
-
-                <HBox
-                    class="filterBox sapUiSmallMarginLeft"
-                    width="100%"
-                >
-                    <!-- Title and Form Section -->
-                    <VBox
-                        class="filterOptions sapUiSmallMarginRight"
-                        width="70%"
-                    >
-                        <Title
-                            text="Advanced Filter Options"
-                            level="H4"
-                            class="sapUiTinyMarginBottom"
+                    <tnt:NavigationList>
+                        <tnt:NavigationListItem
+                            text="Home"
+                            icon="sap-icon://home"
+                            key="home"
                         />
-                        <HBox>
-                            <VBox class="sapUiSmallMarginBottom">
-                                <Label text="Origin ID:" />
-                                <Input
-                                    value="00480AC"
-                                    class="sapUiTinyMarginBegin"
-                                />
-                            </VBox>
-                            <VBox class="sapUiSmallMarginBottom">
-                                <Label text="Part No:" />
-                                <Input
-                                    placeholder="Click on value help for suggestions"
-                                    class="sapUiTinyMarginBegin"
-                                />
-                            </VBox>
-                        </HBox>
-                    </VBox>
+                        <tnt:NavigationListItem
+                            text="Settings"
+                            icon="sap-icon://settings"
+                            key="settings"
+                        />
+                    </tnt:NavigationList>
+                </tnt:SideNavigation>
+            </tnt:sideContent>
 
-                    <!-- Button Section -->
-                    <HBox
+            <!-- Main content -->
+            <tnt:mainContents>
+                <m:VBox class="sapUiTinyMargin">
+                    <m:VBox class="sapUiTinyMargin">
+                        <m:Title
+                            text="Compliance Overview"
+                            class="sapUiTinyMarginBottom sapUiSmallMarginLeft tileHeading"
+                        />
+                        <m:HBox class="tileContainer sapUiSmallMarginBeginEnd">
+                            <!-- First Tile -->
+                            <m:VBox class="customTile">
+                                <m:Text
+                                    text="1114156"
+                                    class="tileNumber1"
+                                />
+                                <m:HBox>
+                                    <core:Icon
+                                        src="sap-icon://document-text"
+                                        class="iconStyle"
+                                    />
+                                    <m:Text
+                                        text="Total Part Numbers"
+                                        class="tileText"
+                                    />
+                                </m:HBox>
+                            </m:VBox>
+
+                            <!-- Second Tile -->
+                            <m:VBox class="customTile">
+                                <m:Text
+                                    text="150888"
+                                    class="tileNumber2"
+                                />
+                                <m:HBox>
+                                    <core:Icon
+                                        src="sap-icon://pending"
+                                        class="iconStyle"
+                                    />
+                                    <m:Text
+                                        text="Without Country of Origin"
+                                        class="tileText"
+                                    />
+                                </m:HBox>
+                            </m:VBox>
+
+                            <!-- Third Tile -->
+                            <m:VBox class="customTile">
+                                <m:Text
+                                    text="963268"
+                                    class="tileNumber3"
+                                />
+                                <m:HBox>
+                                    <core:Icon
+                                        src="sap-icon://complete"
+                                        class="iconStyle"
+                                    />
+                                    <m:Text
+                                        text="With Country of Origin"
+                                        class="tileText"
+                                    />
+                                </m:HBox>
+                            </m:VBox>
+                        </m:HBox>
+                    </m:VBox>
+
+                    <m:HBox
                         justifyContent="End"
-                        alignItems="Center"
-                        width="30%"
                         class="sapUiSmallMarginTop"
                     >
-                        <Button
-                            text="Go"
+                        <m:Text
+                            text="Showing (88/88)"
                             class="sapUiTinyMarginEnd"
                         />
-                        <Button
-                            text="Hide Filter Bar"
-                            class="sapUiTinyMarginEnd"
+                        <m:Button
+                            icon="sap-icon://refresh"
+                            tooltip="Reload"
                         />
-                        <Button text="Clear" />
-                    </HBox>
-                </HBox>
+                    </m:HBox>
 
-                <Table
-                    items="{/complianceData}"
-                    mode="MultiSelect"
-                    sticky="HeaderToolbar,ColumnHeaders"
-                    class="sapUiMediumMarginLeft"
-                >
-                    <headerToolbar>
-                        <Toolbar>
-                            <Title
-                                text="Showing all records that need Country of Origin details to be updated"
-                                class="tableTitle"
+                    <m:HBox
+                        class="filterBox sapUiSmallMarginLeft"
+                        width="100%"
+                    >
+                        <!-- Title and Form Section -->
+                        <m:VBox
+                            class="filterOptions sapUiSmallMarginRight"
+                            width="70%"
+                        >
+                            <m:Title
+                                text="Advanced Filter Options"
+                                level="H4"
+                                class="sapUiTinyMarginBottom"
                             />
-                        </Toolbar>
-                    </headerToolbar>
-                    <columns>
-                        <Column>
-                            <Text text="Origin ID" />
-                        </Column>
-                        <Column>
-                            <Text text="Part No" />
-                        </Column>
-                        <Column>
-                            <Text text="Part Description" />
-                        </Column>
-                        <Column>
-                            <Text text="Country of Origin" />
-                        </Column>
-                        <Column>
-                            <Text text="Active" />
-                        </Column>
-                    </columns>
-                    <items>
-                        <ColumnListItem>
-                            <cells>
-                                <Input value="{OriginID}" />
-                                <Text text="{PartNo}" />
-                                <Text text="{PartDescription}" />
-                                <Input value="{CountryOfOrigin}" />
-                                <Switch state="{Active}" />
-                            </cells>
-                        </ColumnListItem>
-                    </items>
-                </Table>
-            </VBox>
-        </content>
-    </Page>
+                            <m:HBox>
+                                <m:VBox class="sapUiSmallMarginBottom">
+                                    <m:Label text="Origin ID:" />
+                                    <m:Input
+                                        value="00480AC"
+                                        class="sapUiTinyMarginBegin"
+                                    />
+                                </m:VBox>
+                                <m:VBox class="sapUiSmallMarginBottom">
+                                    <m:Label text="Part No:" />
+                                    <m:Input
+                                        placeholder="Click on value help for suggestions"
+                                        class="sapUiTinyMarginBegin"
+                                    />
+                                </m:VBox>
+                            </m:HBox>
+                        </m:VBox>
+
+                        <!-- Button Section -->
+                        <m:HBox
+                            justifyContent="End"
+                            alignItems="Center"
+                            width="30%"
+                            class="sapUiSmallMarginTop"
+                        >
+                            <m:Button
+                                text="Go"
+                                class="sapUiTinyMarginEnd"
+                            />
+                            <m:Button
+                                text="Hide Filter Bar"
+                                class="sapUiTinyMarginEnd"
+                            />
+                            <m:Button text="Clear" />
+                        </m:HBox>
+                    </m:HBox>
+
+                    <m:Table
+                        items="{/complianceData}"
+                        mode="MultiSelect"
+                        sticky="HeaderToolbar,ColumnHeaders"
+                        class="sapUiMediumMarginLeft"
+                    >
+                        <m:headerToolbar>
+                            <m:Toolbar>
+                                <m:Title
+                                    text="Showing all records that need Country of Origin details to be updated"
+                                    class="tableTitle"
+                                />
+                            </m:Toolbar>
+                        </m:headerToolbar>
+                        <m:columns>
+                            <m:Column>
+                                <m:Text text="Origin ID" />
+                            </m:Column>
+                            <m:Column>
+                                <m:Text text="Part No" />
+                            </m:Column>
+                            <m:Column>
+                                <m:Text text="Part Description" />
+                            </m:Column>
+                            <m:Column>
+                                <m:Text text="Country of Origin" />
+                            </m:Column>
+                            <m:Column>
+                                <m:Text text="Active" />
+                            </m:Column>
+                        </m:columns>
+                        <m:items>
+                            <m:ColumnListItem>
+                                <m:cells>
+                                    <m:Input value="{OriginID}" />
+                                    <m:Text text="{PartNo}" />
+                                    <m:Text text="{PartDescription}" />
+                                    <m:Input value="{CountryOfOrigin}" />
+                                    <m:Switch state="{Active}" />
+                                </m:cells>
+                            </m:ColumnListItem>
+                        </m:items>
+                    </m:Table>
+                </m:VBox>
+            </tnt:mainContents>
+        </tnt:ToolPage>
+    </m:App>
 </mvc:View>
