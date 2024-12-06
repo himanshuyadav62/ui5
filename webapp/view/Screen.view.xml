@@ -5,35 +5,39 @@
     xmlns:core="sap.ui.core"
     displayBlock="true"
 >
+
+
+
     <Page>
         <customHeader>
             <Bar>
                 <contentLeft>
-                    <Button icon="sap-icon://nav-back" />
                     <Button
                         icon="sap-icon://upload"
                         text="Submit"
-                        class="sapUiTinyMarginBegin"
+                        class="sapUiTinyMarginBegin submitButton"
                     />
                 </contentLeft>
                 <contentRight>
-                    <Button icon="sap-icon://download" />
+                    <Button
+                        icon="sap-icon://download"
+                        class="downloadButton"
+                    />
                     <Button
                         text="Upload Excel"
-                        class="sapUiTinyMarginBegin"
+                        class="uploadExcelButton"
                     />
                 </contentRight>
             </Bar>
         </customHeader>
+
         <content>
             <VBox class="sapUiTinyMargin">
-                
-
                 <VBox class="sapUiTinyMargin">
-                <Title
-                    text="Compliance Overview"
-                    class="sapUiTinyMarginBottom sapUiSmallMarginLeft tileHeading"
-                />
+                    <Title
+                        text="Compliance Overview"
+                        class="sapUiTinyMarginBottom sapUiSmallMarginLeft tileHeading"
+                    />
                     <HBox class="tileContainer sapUiSmallMarginBeginEnd">
                         <!-- First Tile -->
                         <VBox class="customTile">
@@ -91,7 +95,7 @@
                     </HBox>
                 </VBox>
 
-                 <HBox
+                <HBox
                     justifyContent="End"
                     class="sapUiSmallMarginTop"
                 >
@@ -106,7 +110,7 @@
                 </HBox>
 
                 <HBox
-                    class="filterBox sapUiSmallMarginTop sapUiSmallMarginLeft"
+                    class="filterBox sapUiSmallMarginLeft"
                     width="100%"
                 >
                     <!-- Title and Form Section -->
@@ -156,12 +160,11 @@
                     </HBox>
                 </HBox>
 
-               
-
                 <Table
                     items="{/complianceData}"
                     mode="MultiSelect"
                     sticky="HeaderToolbar,ColumnHeaders"
+                    class="sapUiMediumMarginLeft"
                 >
                     <headerToolbar>
                         <Toolbar>

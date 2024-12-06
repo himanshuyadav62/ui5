@@ -1,72 +1,131 @@
-/* style.css */
+/* Enhanced Styles for Compliance Screen */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f7;
+    font-size: 12px;
+}
+
+.sapMPage {
+    background-color: #f4f4f7;
+}
+
 .iconStyle {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #2d76b3;
 }
 
 .tileContainer {
     justify-content: space-between;
+    gap: 10px;
 }
 
 .customTile {
     width: 32%;
-    padding: 10px;
-    background-color: #f8f9fa;
+    padding: 8px;
+    background-color: #ffffff;
     box-sizing: border-box;
-    border: 1px solid #839db6;
+    border: 1px solid #d1d8e2;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.customTile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .customTile .tileText {
+    font-size: 0.7rem;
+    color: #6a7583;
+    margin-left: 0.4rem;
+}
+
+.tileNumber1, .tileNumber2, .tileNumber3 {
     font-size: 0.8rem;
-    margin-left: 0.5rem;
-}
-
-.tileText {
-    margin-left: 3rem;
-}
-
-/* style.css */
-.tileNumber1 {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
     text-align: center;
-    margin-left: 3rem;
+    margin-left: 2rem;
+    font-weight: 600;
+}
+
+.tileNumber1 {
+    color: #2d76b3;
 }
 
 .tileNumber2 {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    text-align: center;
-    margin-left: 3rem;
-    color: rgb(236, 10, 10); /* Replace 'green' with your desired color */
+    color: #d9534f;
 }
 
 .tileNumber3 {
+    color: #5cb85c;
+}
+
+.tableTitle {
+    color: #2d76b3;
     font-size: 0.9rem;
-    margin-top: 0.5rem;
-    text-align: center;
-    margin-left: 3rem;
-    color: rgb(234, 241, 9); /* Replace 'blue' with your desired color */
-}
-
-
-.sapUiSmallMarginBeginEnd {
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
-.tableTitle{
-    color: rgb(36, 64, 205);
-}
-
-.sapUiSmallMarginLeft {
-    margin-left: 2%;
-}
-
-.sapUiSmallPaddingLeft {
-    padding-left: 2%;
 }
 
 .tileHeading {
-    color: rgb(36, 64, 205);
+    color: #2d76b3;
+    font-size: 1rem;
+    margin-left: 2rem;
+}
+
+.sapMInputBaseInner {
+    font-size: 0.8rem;
+}
+
+.sapMLabel {
+    font-size: 0.8rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .tileContainer {
+        flex-direction: column;
+    }
+    .customTile {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.sapUiSmallMarginLeft {
+    margin-left: 0.8rem;
+}
+
+.sapUiMediumMarginLeft {
+    margin-left: 1.2rem;
+}
+
+.sapMBtn.uploadExcelButton .sapMBtnContent {
+    color: #000000 !important;
+    background-color: #eef0f2 !important;
+    border: 1px solid #211f1f !important;
+    font-size: .8rem;
+    border-radius: 4px;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+.sapMBtn.downloadButton .sapMBtnInner {
+    background-color: #eef0f2 !important;
+    color: #000000 !important;
+    border: 1px solid #201e1e !important;
+}
+.sapMBtn.downloadButton .sapMBtnIcon {
+    color: #000000 !important;
+}
+
+.sapMBtn.submitButton .sapMBtnIcon {
+    color: #000000 !important;
+}
+.sapMBtn.submitButton .sapMBtnInner {
+    background-color: #eef0f2 !important;
+    color: #000000 !important;
+    border: 1px solid #282727 !important;
+    font-size: small;
+    border-radius: 4px;
 }
