@@ -37,12 +37,12 @@ body {
 }
 
 .customTile .tileText {
-    font-size: .8rem;
+    font-size: .9rem;
     color: #6a7583;
 }
 
 .tileNumber1, .tileNumber2, .tileNumber3{
-    font-size: 0.8rem;
+    font-size: .9rem;
     margin-top: 0.4rem;
     text-align: center;
     margin-left: 4rem;
@@ -62,12 +62,13 @@ body {
 }
 
 .tileNumber3, .icon3 {
-    color: #5cb85c;
+    color: #e1f055;
 }
 
 .tableTitle {
     color: #2d76b3;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    margin-left: 1rem;
 }
 
 .tileHeading {
@@ -85,22 +86,9 @@ body {
 }
 
 .submitButton, .downloadButton, .uploadExcelButton {
-    background-color: #eef0f2 !important;
-    color: #000000 !important;
-    border: 1px solid #211f1f !important;
     font-size: 0.8rem;
     margin-right: 1rem;
-    border-radius: 10px;
-}
-
-.submitButton .sapMBtnIcon, .downloadButton .sapMBtnIcon, .uploadExcelButton .sapMBtnIcon {
-    color: #000000 !important;
-   
-}
-.sapMBtn.uploadExcelButton {
-    background-color: #e8ecef !important;
-    color: #000000 !important;
-    border: 1px solid #2d76b3 !important;
+    font-family: Helvetica, sans-serif;
 }
 
 /* Button Container Alignment */
@@ -176,10 +164,6 @@ body {
     margin-left: 0.5rem; /* Space from menu button */
 }
 
-.downloadButton, .uploadExcelButton {
-    font-weight: 500; /* Make text slightly bolder */
-    margin-right: 0.5rem; /* Space between right buttons */
-}
 .sapUiSmallMarginTop {
     margin-top: 0.5rem;
 }
@@ -211,10 +195,62 @@ body {
 
 .fullWidthTable {
     width: 100% !important;
-    max-width: 100% !important;
+    max-width: 90% !important;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-top: 2rem;
+    background-color: #f0f0f0;
 }
 
 .fullWidthTable > .sapUiTableCnt {
     width: 100% !important;
     max-width: 100% !important;
+}
+
+.filterOptions {
+   background-color: #ffffff;
+}
+
+.tilesClass{
+    background-color: #f1f0ee;
+}
+
+.tileOneColor{
+    background-color: #e7eff6;
+}
+
+
+.sapMBtn.uploadExcelButton .sapMBtnInner, .sapMBtn.downloadButton .sapMBtnInner, .sapMBtn.submitButton .sapMBtnInner {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1.2px solid #000000 !important;
+}
+
+.sapMBtn.downloadButton .sapMBtnIcon {
+    color: #000000 !important; /* Change to your desired color */
+}
+
+.sapMBtn.submitButton .sapMBtnIcon {
+    color: #000000 !important; /* Change to your desired color */
+}
+
+.filterBox{
+    background-color: #ffffff;
+}
+
+/* Custom switch styling */
+.customSwitch .sapMSwt {
+    background-color: #e9e9e9;
+}
+
+.customSwitch .sapMSwtOn {
+    background-color: #5cb85c !important; /* green when on */
+}
+
+.customSwitch .sapMSwtOff {
+    background-color: #d9534f !important; /* red when off */
+}
+
+.customSwitch .sapMSwtHandle {
+    background-color: #ffffff;
 }
