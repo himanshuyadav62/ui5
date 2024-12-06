@@ -2,50 +2,24 @@
     controllerName="pscreen.controller.Screen"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:m="sap.m"
+    xmlns:table="sap.ui.table"
     xmlns:tnt="sap.tnt"
     xmlns:core="sap.ui.core"
     displayBlock="true"
 >
     <m:App>
         <!-- Split container for side navigation -->
-        <tnt:ToolPage sideExpanded="false"> <!-- Explicitly set sideExpanded here -->
-            <!-- Side Navigation -->
-            <tnt:header>
-                <tnt:ToolHeader>
-                    <m:Bar>
-                        <m:contentLeft>
-                            <m:Button
-                                icon="sap-icon://menu2"
-                                type="Transparent"
-                                press=".onToggleSideNav"
-                            />
-                            <m:Button
-                                icon="sap-icon://upload"
-                                text="Submit"
-                                class="sapUiTinyMarginBegin submitButton"
-                            />
-                        </m:contentLeft>
-                        <m:contentRight>
-                            <m:Button
-                                icon="sap-icon://download"
-                                class="downloadButton"
-                            />
-                            <m:Button
-                                text="Upload Excel"
-                                class="uploadExcelButton"
-                            />
-                        </m:contentRight>
-                    </m:Bar>
-                </tnt:ToolHeader>
-            </tnt:header>
-
-            <!-- Side Navigation -->
+        <tnt:ToolPage sideExpanded="false">
             <tnt:sideContent>
                 <tnt:SideNavigation
                     itemSelect=".onSideNavigationItemSelect"
                     expanded="false"
                 >
                     <tnt:NavigationList>
+                        <tnt:NavigationListItem
+                            icon="sap-icon://menu2"
+                            class="menuButton"
+                        />
                         <tnt:NavigationListItem
                             text="Home"
                             icon="sap-icon://home"
@@ -63,6 +37,33 @@
             <!-- Main content -->
             <tnt:mainContents>
                 <m:VBox class="sapUiTinyMargin">
+                    <m:HBox class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+                        <!-- Move Submit Button to the Left -->
+                        <m:VBox class="sapUiSmallMarginBegin">
+                            <m:Button
+                                icon="sap-icon://upload"
+                                text="Submit"
+                                class="submitButton"
+                            />
+                        </m:VBox>
+
+                        <!-- Move Download and Upload Excel to the Right -->
+                        <m:HBox
+                            justifyContent="End"
+                            class="sapUiSmallMarginEnd"
+                            width="100%"
+                        >
+                            <m:Button
+                                icon="sap-icon://download"
+                                class="downloadButton"
+                            />
+                            <m:Button
+                                text="Upload Excel"
+                                class="uploadExcelButton"
+                            />
+                        </m:HBox>
+                    </m:HBox>
+
                     <m:VBox class="sapUiTinyMargin">
                         <m:Title
                             text="Compliance Overview"
@@ -78,7 +79,7 @@
                                 <m:HBox>
                                     <core:Icon
                                         src="sap-icon://document-text"
-                                        class="iconStyle"
+                                        class="iconStyle icon1"
                                     />
                                     <m:Text
                                         text="Total Part Numbers"
@@ -96,11 +97,11 @@
                                 <m:HBox>
                                     <core:Icon
                                         src="sap-icon://pending"
-                                        class="iconStyle"
+                                        class="iconStyle icon2"
                                     />
                                     <m:Text
                                         text="Without Country of Origin"
-                                        class="tileText"
+                                        class="tileText icon3"
                                     />
                                 </m:HBox>
                             </m:VBox>
@@ -114,7 +115,7 @@
                                 <m:HBox>
                                     <core:Icon
                                         src="sap-icon://complete"
-                                        class="iconStyle"
+                                        class="iconStyle icon3"
                                     />
                                     <m:Text
                                         text="With Country of Origin"
@@ -127,15 +128,25 @@
 
                     <m:HBox
                         justifyContent="End"
+                        alignItems="Center"
                         class="sapUiSmallMarginTop"
                     >
-                        <m:Text
-                            text="Showing (88/88)"
-                            class="sapUiTinyMarginEnd"
-                        />
                         <m:Button
                             icon="sap-icon://refresh"
                             tooltip="Reload"
+                            class="refreshButton"
+                        />
+
+                        <m:Label
+                            text="Reload"
+                            class="labelSpacing"
+                        />
+
+                        <m:ToolbarSeparator />
+
+                        <m:Text
+                            text="Showing (88/88)"
+                            class="sapUiTinyMarginEnd sapUiTinyMarginBegin"
                         />
                     </m:HBox>
 
@@ -155,14 +166,32 @@
                             />
                             <m:HBox>
                                 <m:VBox class="sapUiSmallMarginBottom">
-                                    <m:Label text="Origin ID:" />
-                                    <m:Input
-                                        value="00480AC"
+                                    <m:Label
+                                        text="Origin ID:"
                                         class="sapUiTinyMarginBegin"
                                     />
+                                    <m:Select class="sapUiTinyMarginBegin">
+                                        <m:items>
+                                            <core:Item
+                                                key="1"
+                                                text="00480AC"
+                                            />
+                                            <core:Item
+                                                key="2"
+                                                text="00480AD"
+                                            />
+                                            <core:Item
+                                                key="3"
+                                                text="00480AE"
+                                            />
+                                        </m:items>
+                                    </m:Select>
                                 </m:VBox>
                                 <m:VBox class="sapUiSmallMarginBottom">
-                                    <m:Label text="Part No:" />
+                                    <m:Label
+                                        text="Part No:"
+                                        class="sapUiTinyMarginBegin"
+                                    />
                                     <m:Input
                                         placeholder="Click on value help for suggestions"
                                         class="sapUiTinyMarginBegin"
@@ -176,7 +205,7 @@
                             justifyContent="End"
                             alignItems="Center"
                             width="30%"
-                            class="sapUiSmallMarginTop"
+                            class="sapUiSmallMarginTop sapUiSmallMarginEnd"
                         >
                             <m:Button
                                 text="Go"
@@ -190,49 +219,67 @@
                         </m:HBox>
                     </m:HBox>
 
-                    <m:Table
-                        items="{/complianceData}"
-                        mode="MultiSelect"
-                        sticky="HeaderToolbar,ColumnHeaders"
-                        class="sapUiMediumMarginLeft"
+                    <table:Table
+                        id="idComplianceDataTable"
+                        rows="{/complianceData}"
+                        width="100%"
+                        class="fullWidthTable"
                     >
-                        <m:headerToolbar>
-                            <m:Toolbar>
-                                <m:Title
-                                    text="Showing all records that need Country of Origin details to be updated"
-                                    class="tableTitle"
-                                />
-                            </m:Toolbar>
-                        </m:headerToolbar>
-                        <m:columns>
-                            <m:Column>
-                                <m:Text text="Origin ID" />
-                            </m:Column>
-                            <m:Column>
-                                <m:Text text="Part No" />
-                            </m:Column>
-                            <m:Column>
-                                <m:Text text="Part Description" />
-                            </m:Column>
-                            <m:Column>
-                                <m:Text text="Country of Origin" />
-                            </m:Column>
-                            <m:Column>
-                                <m:Text text="Active" />
-                            </m:Column>
-                        </m:columns>
-                        <m:items>
-                            <m:ColumnListItem>
-                                <m:cells>
-                                    <m:Input value="{OriginID}" />
+                      <table:extension>
+                            <m:Title
+                                text="Showing all records that need Country of Origin details to be updated"
+                                class="tableTitle"
+                            />
+                        </table:extension>
+                        <table:columns>
+                            <table:Column width="auto">
+                                <m:Label text="Origin ID" />
+                                <table:template>
+                                    <m:Text text="{OriginID}" />
+                                </table:template>
+                            </table:Column>
+                            <table:Column width="auto">
+                                <m:Label text="Part No" />
+                                <table:template>
                                     <m:Text text="{PartNo}" />
+                                </table:template>
+                            </table:Column>
+                            <table:Column width="auto">
+                                <m:Label text="Part Description" />
+                                <table:template>
                                     <m:Text text="{PartDescription}" />
-                                    <m:Input value="{CountryOfOrigin}" />
+                                </table:template>
+                            </table:Column>
+                            <table:Column width="auto">
+                                <m:Label text="Country of Origin" />
+                                <table:template>
+                                    <m:Select selectedKey="{CountryOfOrigin}">
+                                        <core:Item
+                                            key="US"
+                                            text="US"
+                                        />
+                                        <!-- Add more countries as needed -->
+                                    </m:Select>
+                                </table:template>
+                            </table:Column>
+                            <table:Column width="auto">
+                                <m:Label text="Active" />
+                                <table:template>
                                     <m:Switch state="{Active}" />
-                                </m:cells>
-                            </m:ColumnListItem>
-                        </m:items>
-                    </m:Table>
+                                </table:template>
+                            </table:Column>
+                        </table:columns>
+                    </table:Table>
+                    <m:HBox
+                        justifyContent="Center"
+                        class="sapUiSmallMarginTop"
+                    >
+                        <m:Button
+                            icon="sap-icon://paging"
+                            text="Load More"
+                            class="loadMoreButton"
+                        />
+                    </m:HBox>
                 </m:VBox>
             </tnt:mainContents>
         </tnt:ToolPage>

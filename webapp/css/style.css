@@ -17,12 +17,12 @@ body {
 
 .tileContainer {
     justify-content: space-between;
-    gap: 10px;
+    gap: 0px;
 }
 
 .customTile {
-    width: 32%;
-    padding: 8px;
+    width: 35%;
+    padding: 25px;
     background-color: #ffffff;
     box-sizing: border-box;
     border: 1px solid #d1d8e2;
@@ -37,28 +37,31 @@ body {
 }
 
 .customTile .tileText {
-    font-size: 0.7rem;
+    font-size: .8rem;
     color: #6a7583;
-    margin-left: 0.4rem;
 }
 
-.tileNumber1, .tileNumber2, .tileNumber3 {
+.tileNumber1, .tileNumber2, .tileNumber3{
     font-size: 0.8rem;
     margin-top: 0.4rem;
     text-align: center;
-    margin-left: 2rem;
+    margin-left: 4rem;
     font-weight: 600;
 }
 
-.tileNumber1 {
-    color: #2d76b3;
+.tileText {
+    margin-left: 2rem;
 }
 
-.tileNumber2 {
+.tileNumber1, .icon1 {
+    color: #000000;
+}
+
+.tileNumber2, .icon2 {
     color: #d9534f;
 }
 
-.tileNumber3 {
+.tileNumber3, .icon3 {
     color: #5cb85c;
 }
 
@@ -81,6 +84,33 @@ body {
     font-size: 0.8rem;
 }
 
+.submitButton, .downloadButton, .uploadExcelButton {
+    background-color: #eef0f2 !important;
+    color: #000000 !important;
+    border: 1px solid #211f1f !important;
+    font-size: 0.8rem;
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+.submitButton .sapMBtnIcon, .downloadButton .sapMBtnIcon, .uploadExcelButton .sapMBtnIcon {
+    color: #000000 !important;
+   
+}
+.sapMBtn.uploadExcelButton {
+    background-color: #e8ecef !important;
+    color: #000000 !important;
+    border: 1px solid #2d76b3 !important;
+}
+
+/* Button Container Alignment */
+.mHBox {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    align-items: center;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
 /* Responsive Adjustments */
 @media (max-width: 600px) {
     .tileContainer {
@@ -89,6 +119,10 @@ body {
     .customTile {
         width: 100%;
         margin-bottom: 10px;
+    }
+    .mHBox {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        align-items: flex-start; /* Align buttons to the left */
     }
 }
 
@@ -100,32 +134,87 @@ body {
     margin-left: 1.2rem;
 }
 
-.sapMBtn.uploadExcelButton .sapMBtnContent {
-    color: #000000 !important;
-    background-color: #eef0f2 !important;
-    border: 1px solid #211f1f !important;
-    font-size: .8rem;
-    border-radius: 4px;
-    padding-left: .5rem;
-    padding-right: .5rem;
+.sapUiSmallMarginRight {
+    margin-right: 0.8rem;
 }
 
-.sapMBtn.downloadButton .sapMBtnInner {
-    background-color: #eef0f2 !important;
-    color: #000000 !important;
-    border: 1px solid #201e1e !important;
-}
-.sapMBtn.downloadButton .sapMBtnIcon {
-    color: #000000 !important;
+
+/* General Button Styling for Similar Look */
+.mBar .sapMBtn {
+    border-radius: 4px;
+    font-size: 0.9rem; /* Slightly larger text */
+    padding: 0.4rem 0.8rem; /* Compact padding for a neat look */
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    border: 1px solid #d1d8e2; /* Light border for subtle effect */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Light shadow */
+    transition: all 0.2s ease-in-out; /* Smooth hover effect */
+    display: flex; /* Align icon and text */
+    align-items: center; /* Vertically center icon and text */
+    gap: 0.3rem; /* Space between icon and text */
 }
 
-.sapMBtn.submitButton .sapMBtnIcon {
-    color: #000000 !important;
+.mBar .sapMBtn:hover {
+    background-color: #f4f4f7; /* Light gray on hover */
+    border-color: #bcc5d3; /* Slightly darker border on hover */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
 }
-.sapMBtn.submitButton .sapMBtnInner {
-    background-color: #eef0f2 !important;
-    color: #000000 !important;
-    border: 1px solid #282727 !important;
-    font-size: small;
-    border-radius: 4px;
+
+.mBar .sapMBtnIcon {
+    font-size: 1rem; /* Slightly larger icon size */
+    color: #000000; /* Black icon */
+}
+
+.menuButton {
+    padding: 0.3rem 0.6rem; /* Smaller padding */
+    font-size: 0.85rem; /* Adjust font size */
+    margin-left: -8px; /* Shift menu button slightly left */
+}
+
+.submitButton {
+    font-weight: 500; /* Make text slightly bolder */
+    margin-left: 0.5rem; /* Space from menu button */
+}
+
+.downloadButton, .uploadExcelButton {
+    font-weight: 500; /* Make text slightly bolder */
+    margin-right: 0.5rem; /* Space between right buttons */
+}
+.sapUiSmallMarginTop {
+    margin-top: 0.5rem;
+}
+
+.sapUiSmallMarginBottom {
+    margin-bottom: 0.5rem;
+}
+
+
+/* Custom CSS for margin and spacing */
+.refreshButton {
+    margin-right: 10px; /* Add space between the button and the label */
+}
+
+.labelSpacing {
+    margin-right: 10px; /* Add space between the label and the text */
+    margin-top: .1rem;
+    color: blue;
+    font-size: 1rem;
+}
+
+.sapUiTinyMarginBegin {
+    margin-left: 0.4rem; /* Add space to the left of the element */
+}
+
+.sapUiSmallMarginEnd {
+    margin-right: 0.8rem; /* Add space to the right of the element */
+}
+
+.fullWidthTable {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.fullWidthTable > .sapUiTableCnt {
+    width: 100% !important;
+    max-width: 100% !important;
 }

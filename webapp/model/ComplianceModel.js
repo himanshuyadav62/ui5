@@ -38,6 +38,74 @@ sap.ui.define([], function () {
                     PartDescription: "BRACKET-HOOD GUIDE, S89-1",
                     CountryOfOrigin: "US",
                     Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6392",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-2",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6393",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-3",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6394",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-4",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6395",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-5",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6396",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-6",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6397",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-7",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6398",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-8",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6399",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-9",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6400",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-10",
+                    CountryOfOrigin: "US",
+                    Active: true
+                },
+                {
+                    OriginID: "00480AC",
+                    PartNo: "L11-6401",
+                    PartDescription: "BRACKET-HOOD GUIDE, S89-11",
                 }
             ];
         }
