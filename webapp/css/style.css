@@ -13,11 +13,16 @@
     padding: 10px;
     background-color: #f8f9fa;
     box-sizing: border-box;
+    border: 1px solid #839db6;
 }
 
 .customTile .tileText {
     font-size: 0.8rem;
     margin-left: 0.5rem;
+}
+
+.tileText {
+    margin-left: 3rem;
 }
 
 /* style.css */
@@ -48,4 +53,20 @@
 .sapUiSmallMarginBeginEnd {
     margin-left: 2%;
     margin-right: 2%;
+}
+
+.tableTitle{
+    color: rgb(36, 64, 205);
+}
+
+.sapUiSmallMarginLeft {
+    margin-left: 2%;
+}
+
+.sapUiSmallPaddingLeft {
+    padding-left: 2%;
+}
+
+.tileHeading {
+    color: rgb(36, 64, 205);
 }

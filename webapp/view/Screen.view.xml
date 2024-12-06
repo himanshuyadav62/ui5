@@ -5,7 +5,7 @@
     xmlns:core="sap.ui.core"
     displayBlock="true"
 >
-    <Page showHeader="true">
+    <Page>
         <customHeader>
             <Bar>
                 <contentLeft>
@@ -26,82 +26,72 @@
             </Bar>
         </customHeader>
         <content>
-            <VBox class="sapUiSmallMargin">
+            <VBox class="sapUiTinyMargin">
+                
+
+                <VBox class="sapUiTinyMargin">
                 <Title
                     text="Compliance Overview"
-                    class="sapUiTinyMarginBottom"
+                    class="sapUiTinyMarginBottom sapUiSmallMarginLeft tileHeading"
                 />
+                    <HBox class="tileContainer sapUiSmallMarginBeginEnd">
+                        <!-- First Tile -->
+                        <VBox class="customTile">
+                            <Text
+                                text="1114156"
+                                class="tileNumber1"
+                            />
+                            <HBox>
+                                <core:Icon
+                                    src="sap-icon://document-text"
+                                    class="iconStyle"
+                                />
+                                <Text
+                                    text="Total Part Numbers"
+                                    class="tileText"
+                                />
+                            </HBox>
+                        </VBox>
 
-                <!-- screen.view.xml -->
-                <!-- screen.view.xml -->
-<!-- screen.view.xml -->
-<VBox class="sapUiSmallMargin">
-    <HBox class="tileContainer sapUiSmallMarginBeginEnd">
-        <!-- First Tile -->
-        <VBox class="customTile">
-            <Text text="1114156" class="tileNumber1" />
-            <HBox>
-                <core:Icon src="sap-icon://document-text" class="iconStyle" />
-                <Text text="Total Part Numbers" class="tileText" />
-            </HBox>
-        </VBox>
+                        <!-- Second Tile -->
+                        <VBox class="customTile">
+                            <Text
+                                text="150888"
+                                class="tileNumber2"
+                            />
+                            <HBox>
+                                <core:Icon
+                                    src="sap-icon://pending"
+                                    class="iconStyle"
+                                />
+                                <Text
+                                    text="Without Country of Origin"
+                                    class="tileText"
+                                />
+                            </HBox>
+                        </VBox>
 
-        <!-- Second Tile -->
-        <VBox class="customTile">
-            <Text text="150888" class="tileNumber2" />
-            <HBox>
-                <core:Icon src="sap-icon://pending" class="iconStyle" />
-                <Text text="Without Country of Origin" class="tileText" />
-            </HBox>
-        </VBox>
-
-        <!-- Third Tile -->
-        <VBox class="customTile">
-            <Text text="963268" class="tileNumber3" />
-            <HBox>
-                <core:Icon src="sap-icon://complete" class="iconStyle" />
-                <Text text="With Country of Origin" class="tileText" />
-            </HBox>
-        </VBox>
-    </HBox>
-</VBox>
-
-                <VBox class="filterBox sapUiSmallMarginTop">
-                    <Title
-                        text="Advanced Filter Options"
-                        level="H4"
-                        class="sapUiTinyMarginBottom"
-                    />
-                    <form:SimpleForm
-                        layout="ResponsiveGridLayout"
-                        editable="true"
-                        xmlns:form="sap.ui.layout.form"
-                    >
-                        <Label text="Origin ID:" />
-                        <Input value="00480AC" />
-                        <Label text="Part No:" />
-                        <Input
-                            placeholder="Click on value help for suggestions"
-                        />
-                    </form:SimpleForm>
-                    <HBox justifyContent="End">
-                        <Button
-                            text="Go"
-                            type="Emphasized"
-                            press=".onSearch"
-                        />
-                        <Button
-                            text="Hide Filter Bar"
-                            class="sapUiTinyMarginBegin"
-                        />
-                        <Button
-                            text="Clear"
-                            class="sapUiTinyMarginBegin"
-                        />
+                        <!-- Third Tile -->
+                        <VBox class="customTile">
+                            <Text
+                                text="963268"
+                                class="tileNumber3"
+                            />
+                            <HBox>
+                                <core:Icon
+                                    src="sap-icon://complete"
+                                    class="iconStyle"
+                                />
+                                <Text
+                                    text="With Country of Origin"
+                                    class="tileText"
+                                />
+                            </HBox>
+                        </VBox>
                     </HBox>
                 </VBox>
 
-                <HBox
+                 <HBox
                     justifyContent="End"
                     class="sapUiSmallMarginTop"
                 >
@@ -115,6 +105,59 @@
                     />
                 </HBox>
 
+                <HBox
+                    class="filterBox sapUiSmallMarginTop sapUiSmallMarginLeft"
+                    width="100%"
+                >
+                    <!-- Title and Form Section -->
+                    <VBox
+                        class="filterOptions sapUiSmallMarginRight"
+                        width="70%"
+                    >
+                        <Title
+                            text="Advanced Filter Options"
+                            level="H4"
+                            class="sapUiTinyMarginBottom"
+                        />
+                        <HBox>
+                            <VBox class="sapUiSmallMarginBottom">
+                                <Label text="Origin ID:" />
+                                <Input
+                                    value="00480AC"
+                                    class="sapUiTinyMarginBegin"
+                                />
+                            </VBox>
+                            <VBox class="sapUiSmallMarginBottom">
+                                <Label text="Part No:" />
+                                <Input
+                                    placeholder="Click on value help for suggestions"
+                                    class="sapUiTinyMarginBegin"
+                                />
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Button Section -->
+                    <HBox
+                        justifyContent="End"
+                        alignItems="Center"
+                        width="30%"
+                        class="sapUiSmallMarginTop"
+                    >
+                        <Button
+                            text="Go"
+                            class="sapUiTinyMarginEnd"
+                        />
+                        <Button
+                            text="Hide Filter Bar"
+                            class="sapUiTinyMarginEnd"
+                        />
+                        <Button text="Clear" />
+                    </HBox>
+                </HBox>
+
+               
+
                 <Table
                     items="{/complianceData}"
                     mode="MultiSelect"
@@ -124,6 +167,7 @@
                         <Toolbar>
                             <Title
                                 text="Showing all records that need Country of Origin details to be updated"
+                                class="tableTitle"
                             />
                         </Toolbar>
                     </headerToolbar>
