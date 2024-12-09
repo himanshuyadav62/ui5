@@ -3,7 +3,7 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel",
     "sap/ui/table/rowmodes/Fixed",
     "../model/ComplianceModel"
-], function (Controller, JSONModel,FixedRowMode, ComplianceModel) {
+], function (Controller, JSONModel, FixedRowMode, ComplianceModel) {
     "use strict";
 
     return Controller.extend("pscreen.controller.Screen", {
@@ -15,6 +15,14 @@ sap.ui.define([
                 complianceData: ComplianceModel.getInitialData()
             });
             this.getView().setModel(oModel);
+            let oVBox1 = this.getView().byId("idTile1VBox");
+            let oVBox2 = this.getView().byId("idTile2VBox");
+            let oVBox3 = this.getView().byId("idTile3VBox");
+
+            // Attach click event to all VBoxes
+            [oVBox1, oVBox2, oVBox3].forEach(function (oVBox) {
+                oVBox.attachBrowserEvent("click", this.onVBoxClick.bind(this));
+            }.bind(this));
         },
 
         onSearch: function () {
@@ -34,14 +42,31 @@ sap.ui.define([
         },
 
 
-		onButtonMenuPress: function(oEvent) {
-			
-		},
+        onButtonMenuPress: function (oEvent) {
 
-		onSideNavigationItemSelect: function(oEvent) {
-			
-		}
-        
-        
+        },
+
+        onSideNavigationItemSelect: function (oEvent) {
+
+        },
+
+        onVBoxClick: function (oEvent) {
+            let oClickedVBox = oEvent.currentTarget;
+
+            let oView = this.getView();
+            let aVBoxes = [
+                oView.byId("idTile1VBox"),
+                oView.byId("idTile2VBox"),
+                oView.byId("idTile3VBox")
+            ];
+
+            aVBoxes.forEach(function (oVBox) {
+                oVBox.removeStyleClass("activeVBox");
+            });
+
+            sap.ui.getCore().byId(oClickedVBox.id).addStyleClass("activeVBox");
+        }
+
+
     });
 });

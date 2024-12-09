@@ -89,7 +89,7 @@
                                     class="tileContainer sapUiSmallMarginBeginEnd"
                                 >
                                     <!-- First Tile -->
-                                    <m:VBox class="customTile tileOneColor">
+                                    <m:VBox class="customTile activeVBox" id = "idTile1VBox">
                                         <m:Text
                                             text="1114156"
                                             class="tileNumber1"
@@ -107,7 +107,7 @@
                                     </m:VBox>
 
                                     <!-- Second Tile -->
-                                    <m:VBox class="customTile">
+                                    <m:VBox class="customTile" id = "idTile2VBox">
                                         <m:Text
                                             text="150888"
                                             class="tileNumber2"
@@ -125,7 +125,7 @@
                                     </m:VBox>
 
                                     <!-- Third Tile -->
-                                    <m:VBox class="customTile">
+                                    <m:VBox class="customTile" id = "idTile3VBox">
                                         <m:Text
                                             text="963268"
                                             class="tileNumber3"
