@@ -10,11 +10,8 @@ sap.ui.define([
         onInit: function () {
             this.byId("idComplianceDataTable").setRowMode(new FixedRowMode({ rowCount: 5 }));
             // Set logo path
-            const oModel = new JSONModel({
-                logoPath: "path/to/paccar-logo.png",
-                complianceData: ComplianceModel.getInitialData()
-            });
-            this.getView().setModel(oModel);
+            this.getView().setModel(this.loadTableData(null)); // Corrected function call
+
             let oVBox1 = this.getView().byId("idTile1VBox");
             let oVBox2 = this.getView().byId("idTile2VBox");
             let oVBox3 = this.getView().byId("idTile3VBox");
@@ -23,6 +20,15 @@ sap.ui.define([
             [oVBox1, oVBox2, oVBox3].forEach(function (oVBox) {
                 oVBox.attachBrowserEvent("click", this.onVBoxClick.bind(this));
             }.bind(this));
+        },
+
+        loadTableData: function (viewId) {
+            const oModel = new JSONModel({
+                logoPath: "path/to/paccar-logo.png",
+                complianceData: ComplianceModel.getInitialData()
+            });
+            // fetch Data based on viewId, you can implement your data fetching logic here
+            return oModel; 
         },
 
         onSearch: function () {
@@ -41,13 +47,12 @@ sap.ui.define([
             // Implement submit logic
         },
 
-
         onButtonMenuPress: function (oEvent) {
-
+            // Handle menu press
         },
 
         onSideNavigationItemSelect: function (oEvent) {
-
+            // Handle side navigation item select
         },
 
         onVBoxClick: function (oEvent) {
@@ -65,8 +70,7 @@ sap.ui.define([
             });
 
             sap.ui.getCore().byId(oClickedVBox.id).addStyleClass("activeVBox");
+            this.getView().setModel(this.loadTableData(oClickedVBox.id));
         }
-
-
     });
 });
