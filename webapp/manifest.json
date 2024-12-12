@@ -84,10 +84,17 @@
                     ]
                 },
                 {
-                    "name": "RouteScreen",
-                    "pattern": "screen",
+                    "name": "RouteAdmin",
+                    "pattern": "admin",
                     "target": [
-                        "TargetScreen"
+                        "TargetAdmin"
+                    ]
+                },
+                {
+                    "name": "RouteUser",
+                    "pattern": "user",
+                    "target": [
+                        "TargetUser"
                     ]
                 }
             ],
@@ -96,9 +103,13 @@
                     "id": "View",
                     "name": "View"
                 },
-                "TargetScreen": {
-                    "id": "Screen",
-                    "name": "Screen"
+                "TargetAdmin": {
+                    "id": "Admin",
+                    "name": "Admin"
+                },
+                "TargetUser": {
+                    "id": "User",
+                    "name": "User"
                 }
             }
         },
