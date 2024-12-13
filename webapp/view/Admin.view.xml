@@ -20,12 +20,16 @@
       <columns>
         <Column><Label text="Label" /></Column>
         <Column><Label text="Property" /></Column>
+        <Column><Label text="Width" /></Column>
+        <Column><Label text="Visible" /></Column>
       </columns>
       <items>
         <ColumnListItem>
           <cells>
-            <Text text="{label}" />
+            <Input value="{label}" liveChange="onLabelEdit" />
             <Text text="{property}" />
+            <Input value="{width}" liveChange="onWidthEdit" />
+            <Switch state="{visible}" change="onVisibilityChange" />
           </cells>
         </ColumnListItem>
       </items>

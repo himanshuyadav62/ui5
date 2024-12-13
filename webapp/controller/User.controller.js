@@ -33,7 +33,8 @@ sap.ui.define([
                     label: new sap.m.Label({ text: column.label }),
                     template: new Text({ text: `{${column.property}}` }),
                     sortProperty: column.property,
-                    filterProperty: column.property
+                    filterProperty: column.property,
+                    width: column.width
                   })
                 );
               }
