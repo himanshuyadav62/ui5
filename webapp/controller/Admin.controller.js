@@ -19,9 +19,37 @@ sap.ui.define([
           });
       },
   
+      onReorderItems: function(oEvent) {
+        const oDragged = oEvent.getParameter("draggedControl");
+        const oDropped = oEvent.getParameter("droppedControl");
+        const sDropPosition = oEvent.getParameter("dropPosition");
+    
+        const oModel = this.getView().getModel();
+        // Create a copy of the data array
+        const aItems = [...oModel.getData()];
+    
+        const iDraggedIndex = aItems.findIndex(item => item === oDragged.getBindingContext().getObject());
+        const iDroppedIndex = aItems.findIndex(item => item === oDropped.getBindingContext().getObject());
+    
+        const oDraggedItem = aItems.splice(iDraggedIndex, 1)[0];
+        const iNewIndex = sDropPosition === "After" ? iDroppedIndex + 1 : iDroppedIndex;
+    
+        aItems.splice(iNewIndex, 0, oDraggedItem);
+        
+        // Set the reordered data back to the model
+        oModel.setData(aItems);
+        // Force model update
+        oModel.updateBindings(true);
+    },
+  
       onSaveSettings: function () {
         const oModel = this.getView().getModel();
         const updatedSettings = oModel.getData();
+
+        // set the order property based on the index
+        updatedSettings.forEach((item, index) => {
+          item.order = index;
+        });
   
         // Save updated settings
         fetch("http://localhost:3000/api/columnSettings", {
@@ -39,4 +67,3 @@ sap.ui.define([
       }
     });
   });
-  
