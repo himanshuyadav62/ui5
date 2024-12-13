@@ -108,8 +108,8 @@
                     "name": "Admin"
                 },
                 "TargetUser": {
-                    "id": "User",
-                    "name": "User"
+                    "id": "Users",
+                    "name": "Users"
                 }
             }
         },

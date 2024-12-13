@@ -1,18 +1,24 @@
 <mvc:View
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:table="sap.ui.table"
-    xmlns:m="sap.m"
-    controllerName="pscreen.controller.Admin">
-
-    <m:Page title="Admin - Column Settings">
-        <m:content>
-            <!-- Placeholder for the table -->
-            <m:VBox>
-                <table:Table id="adminTable" rows="{/columns}">
-                </table:Table>
-                <!-- Save Button -->
-                <m:Button text="Save Changes" press="onSaveSettings" />
-            </m:VBox>
-        </m:content>
-    </m:Page>
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="pscreen.controller.Admin">
+  <VBox>
+    <Table id="settingsTable" items="{/}">
+      <columns>
+        <Column><Label text="Label" /></Column>
+        <Column><Label text="Property" /></Column>
+        <Column><Label text="Visible" /></Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <Input value="{label}" />
+            <Input value="{property}" />
+            <Switch state="{visible}" />
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+    <Button text="Save Settings" press="onSaveSettings" />
+  </VBox>
 </mvc:View>

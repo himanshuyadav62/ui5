@@ -1,52 +1,61 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/table/Table",
+    "sap/ui/table/Column",
+    "sap/m/Text"
+  ], function (Controller, JSONModel, Table, Column, Text) {
     "use strict";
-
+  
     return Controller.extend("pscreen.controller.User", {
-
-        onInit: function () {
-            const table = "users"; // Set this dynamically
-
-            // Load column settings
-            $.ajax({
-                url: `/api/column-settings/${table}`,
-                method: "GET",
-                success: function (columns) {
-                    const visibleColumns = columns.filter(col => col.visible)
-                        .sort((a, b) => a.order - b.order)
-                        .map(col => col.id);
-
-                    // Fetch data respecting the visible columns
-                    $.ajax({
-                        url: `/api/table-data/${table}`,
-                        method: "GET",
-                        success: function (data) {
-                            const filteredData = data.data.map(row => {
-                                const filteredRow = {};
-                                visibleColumns.forEach(col => {
-                                    filteredRow[col] = row[col];
-                                });
-                                return filteredRow;
-                            });
-
-                            const oModel = new JSONModel({
-                                columns: columns.filter(col => col.visible).sort((a, b) => a.order - b.order),
-                                data: filteredData
-                            });
-
-                            this.getView().setModel(oModel);
-                        }.bind(this),
-                        error: function () {
-                            console.error("Error loading table data.");
-                        }
-                    });
-                }.bind(this),
-                error: function () {
-                    console.error("Error loading column settings.");
-                }
+      onInit: function () {
+        this.createDynamicTable();
+      },
+  
+      createDynamicTable: function () {
+        const oView = this.getView();
+  
+        // Step 1: Fetch column settings
+        fetch("http://localhost:3000/api/columnSettings")
+          .then((response) => response.json())
+          .then((columns) => {
+            // Create a new table instance
+            const oTable = new Table({
+              visibleRowCount: 10,
+              selectionMode: "Single"
             });
-        }
+  
+            // Add columns dynamically based on visibility
+            columns.forEach((column) => {
+              if (column.visible) {
+                oTable.addColumn(
+                  new Column({
+                    label: new sap.m.Label({ text: column.label }),
+                    template: new Text({ text: `{${column.property}}` }),
+                    sortProperty: column.property,
+                    filterProperty: column.property
+                  })
+                );
+              }
+            });
+  
+            // Step 2: Fetch data and bind to the table
+            fetch("http://localhost:3000/api/data")
+              .then((response) => response.json())
+              .then((data) => {
+                const oModel = new JSONModel();
+                oModel.setData(data);
+                oTable.setModel(oModel);
+                oTable.bindRows("/");
+              });
+  
+            // Add the table to the view
+            oView.byId("tableContainer").addItem(oTable);
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }
     });
-});
+  });
+  
