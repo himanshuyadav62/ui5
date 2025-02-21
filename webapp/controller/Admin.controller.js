@@ -19,37 +19,18 @@ sap.ui.define([
                 });
         },
 
-        onReorderItems: function (oEvent) {
-            const oDragged = oEvent.getParameter("draggedControl");
-            const oDropped = oEvent.getParameter("droppedControl");
-            const sDropPosition = oEvent.getParameter("dropPosition");
-
-            const oModel = this.getView().getModel();
-            // Create a copy of the data array
-            const aItems = [...oModel.getData()];
-
-            const iDraggedIndex = aItems.findIndex(item => item === oDragged.getBindingContext().getObject());
-            const iDroppedIndex = aItems.findIndex(item => item === oDropped.getBindingContext().getObject());
-
-            const oDraggedItem = aItems.splice(iDraggedIndex, 1)[0];
-            const iNewIndex = sDropPosition === "After" ? iDroppedIndex + 1 : iDroppedIndex;
-
-            aItems.splice(iNewIndex, 0, oDraggedItem);
-
-            // Set the reordered data back to the model
-            oModel.setData(aItems);
-            // Force model update
-            oModel.updateBindings(true);
-        },
-
         onSaveSettings: function () {
             const oModel = this.getView().getModel();
             const updatedSettings = oModel.getData();
 
-            // set the order property based on the index
-            updatedSettings.forEach((item, index) => {
-                item.order = index;
-            });
+            // Validate unique order values
+            const orderValues = updatedSettings.map(item => item.order);
+            const hasDuplicates = orderValues.some((value, index) => orderValues.indexOf(value) !== index);
+
+            if (hasDuplicates) {
+                MessageToast.show("Order values must be unique.");
+                return;
+            }
 
             // Save updated settings
             fetch("http://localhost:3000/api/columnSettings", {
@@ -82,6 +63,35 @@ sap.ui.define([
             const bNewState = oEvent.getParameter("state");
             const oContext = oEvent.getSource().getBindingContext();
             oContext.getObject().visible = bNewState;
+        },
+
+        onOrderEdit: function (oEvent) {
+            const sNewValue = parseInt(oEvent.getParameter("value"), 10);
+            const oContext = oEvent.getSource().getBindingContext();
+            oContext.getObject().order = isNaN(sNewValue) ? null : (Number)(sNewValue);
+        },
+
+		onReorderRows: function (oEvent) {
+            const oModel = this.getView().getModel();
+            const updatedSettings = oModel.getData();
+        
+            // Validate unique order values
+            const orderValues = updatedSettings.map(item => item.order);
+            const hasDuplicates = orderValues.some((value, index) => orderValues.indexOf(value) !== index);
+        
+            if (hasDuplicates) {
+                MessageToast.show("Order values must be unique.");
+                return;
+            }
+        
+            // Set the updated data back to the model
+            updatedSettings.sort((a, b) => a.order - b.order);
+        
+            // Explicitly refresh the bindings for the table
+            // const oTable = this.getView().byId("settingsTable");
+            // oTable.getBinding("items").refresh();
+            this.getView().setModel(oModel);
+            this.getView().getModel().refresh();
         }
     });
 });
